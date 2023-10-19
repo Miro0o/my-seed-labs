@@ -21,22 +21,11 @@ it has now reached a point, where individual efforts can no longer meet
 the ever increasing needs from the world. There are many interesting things
 that we can do if we work together as a community.
 
-## Vision
 
-Learning by doing is essential for education. 
-Our vision is to develop hands-on labs that can help achieve
-learning by doing in cybersecurity education.
-These include lab exercises that are well-designed, interesting, and effective, 
-as well as the platforms to support these labs. 
-The labs and platforms are open source, so universities,
-colleges, and high schools around the world 
-can freely use them to enhance their curricula.
+## Notes
 
-
-## Contributing
-
-Want to contribute? Great! Please take a few minutes to
-[read this](CONTRIBUTING.md)!
+This branch is for my undergraduate course labs. The master branch is to kept update with the officail.
+In this branch are my one experiments & codes.
 
 
 ## License
