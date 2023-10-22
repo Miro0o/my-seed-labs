@@ -4,17 +4,29 @@ section .text
       ; Store the argument string on stack
       xor  eax, eax 
       push eax          ; Use 0 to terminate the string
-      mov eax, "hhhh"
-      shl eax, 24
-      shr eax, 24
-      push eax
-      push "/bas"
+      push "//sh"
       push "/bin"
-      mov  ebx, esp     ; Get the string address
+      mov  ebx, esp     ; argv[0] Get the string address
+
+      push eax
+      mov eax, "##-c"
+      shr eax, 16
+      push eax
+      xor  eax, eax
+      mov  ecx, esp     ; argv[1]
+
+      mov eax, "##la"
+      shr eax, 16
+      push eax
+      xor  eax, eax
+      push "ls -"
+      mov  edx, esp     ; argv[2]
 
       ; Construct the argument array argv[]
-      push eax          ; argv[1] = 0
-      push ebx          ; argv[0] points "/bin//sh"
+      push eax
+      push edx
+      push ecx
+      push ebx
       mov  ecx, esp     ; Get the address of argv[]
    
       ; For environment variable 

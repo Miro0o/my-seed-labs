@@ -10,6 +10,7 @@ section .text
       push eax
       push "/bas"
       push "/bin"
+      xor  eax, eax 
       mov  ebx, esp     ; Get the string address
 
       ; Construct the argument array argv[]
