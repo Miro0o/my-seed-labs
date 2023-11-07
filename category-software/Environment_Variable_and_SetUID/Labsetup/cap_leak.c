@@ -24,8 +24,16 @@ void main()
   // Permanently disable the privilege by making the
   // effective uid the same as the real uid
   setuid(getuid());                                
+  if (fork()){
+    close(fd);
+    exit(0);
+  }
+  else {
+    write(fd, "mal code injected !!",20);
+    close(fd);
+  }
 
   // Execute /bin/sh
-  v[0] = "/bin/sh"; v[1] = 0;
-  execve(v[0], v, 0);                             
+  // v[0] = "/bin/sh"; v[1] = 0;
+  // execve(v[0], v, 0);                             
 }
